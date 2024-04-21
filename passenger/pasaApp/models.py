@@ -8,4 +8,4 @@ class Passenger(models.Model):
     rewardPoints = models.DecimalField(max_digits=5, decimal_places=2)
 
     def __str__(self):
-        return self.firstName+self.lastName
+        return self.firstName + self.lastName
