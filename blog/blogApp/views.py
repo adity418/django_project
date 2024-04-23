@@ -2,23 +2,43 @@ from django.shortcuts import render
 from rest_framework import generics
 from blogApp.models import Category, Blog
 from blogApp.serializers import CategorySerializer, BlogSerializer
+from rest_framework import viewsets
+from rest_framework.pagination import PageNumberPagination
+from rest_framework import filters
 
-# Create your views here.
-class CategoryListView(generics.ListCreateAPIView):
+
+
+class CourseViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    pagination_class = PageNumberPagination
+    filter_backends = [filters.OrderingFilter]
 
-class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializer
-
-class BlogListView(generics.ListCreateAPIView):
+class BlogViewSet(viewsets.ModelViewSet):
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
+    pagination_class = PageNumberPagination
+    filter_backends = [filters.OrderingFilter]
 
-class BlogDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Blog.objects.all()
-    serializer_class = BlogSerializer
+
+    
+
+"""Create your views here."""
+# class CategoryListView(generics.ListCreateAPIView):
+#     queryset = Category.objects.all()
+#     serializer_class = CategorySerializer
+
+# class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Category.objects.all()
+#     serializer_class = CategorySerializer
+
+# class BlogListView(generics.ListCreateAPIView):
+#     queryset = Blog.objects.all()
+#     serializer_class = BlogSerializer
+
+# class BlogDetailView(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Blog.objects.all()
+#     serializer_class = BlogSerializer
 
 # class CategoryList(APIView):
 
